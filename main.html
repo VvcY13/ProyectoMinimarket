@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv=”Last-Modified” content=”0″>
+    <meta http-equiv=”Cache-Control” content=”no-cache, mustrevalidate”>
+    <title>D'Todo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" href="/img/favicon-removebg-preview.png" type="image/x-icon">
+</head>
+<body>
+
+    <div class="wrapper">
+        <header class="header-mobile">
+            <img class="logo" src="img/D_Todo-whitec.jpg" alt="minimarket">
+            <!-- <h1 class="logo">D'Todo</h1> -->
+            <button class="open-menu" id="open-menu">
+                <i class="bi bi-list"></i>
+            </button>
+        </header>
+        <aside>
+            <button class="close-menu" id="close-menu">
+                <i class="bi bi-x"></i>
+            </button>
+            <header>
+                <img class="logo" src="img/D_Todo-whitec.jpg" alt="minimarket">
+                <!-- <h1 class="logo">D'Todo</h1> -->
+            </header>
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <button id="todos" class="boton-menu boton-categoria active"><i class="bi bi-hand-index-thumb-fill"></i> Todos los productos</button>
+                    </li>
+                    <li>
+                        <button id="Abarrotes" class="boton-menu boton-categoria"><i class="bi bi-hand-index-thumb"></i>Abarrotes</button>
+                    </li>
+                    <li>
+                        <button id="Snacks" class="boton-menu boton-categoria"><i class="bi bi-hand-index-thumb"></i>Snacks</button>
+                    </li>
+                    <li>
+                        <button id="Productos de Limpieza" class="boton-menu boton-categoria"><i class="bi bi-hand-index-thumb"></i>Productos de Limpieza</button>
+                    </li>
+                                   
+                    <li>
+                        <a class="boton-menu boton-carrito" href="./carrito.html">
+                            <i class="bi bi-cart-fill"></i> Carrito <span id="numerito" class="numerito">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="boton-menu boton-salir" href="./index.html">
+                            <i class="bi bi-box-arrow-in-right"></i> Cerrar Sesión 
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <footer>
+                <p class="texto-footer"><span>© 2023</span> Grupo 02 | Arq. de Software</p>
+            </footer>
+        </aside>
+        <main>
+            <h2 class="titulo-principal" id="titulo-principal">Todos los productos</h2>
+            <div id="contenedor-productos" class="contenedor-productos">
+                <!-- Esto se va a rellenar con JS -->
+            </div>
+        </main>
+    </div>
+
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="AgenteDTodo"
+  agent-id="29e8ed79-4592-4958-a6f1-3198d9efd2f3"
+  language-code="es"
+></df-messenger>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/menu.js"></script>
+</body>
+</html>

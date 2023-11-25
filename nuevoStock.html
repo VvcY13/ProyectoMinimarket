@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" href="/img/favicon-removebg-preview.png" type="image/x-icon">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header-mobile">
+            <img class="logo" src="img/D_Todo-whitec.jpg" alt="minimarket">
+            <!-- <h1 class="logo">D'Todo</h1> -->
+            <button class="open-menu" id="open-menu">
+                <i class="bi bi-list"></i>
+            </button>
+        </header>
+        <aside>
+            <button class="close-menu" id="close-menu">
+                <i class="bi bi-x"></i>
+            </button>
+            <header>
+                <img class="logo" src="img/D_Todo-whitec.jpg" alt="minimarket">
+                <!-- <h1 class="logo">D'Todo</h1> -->
+            </header>
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <button id="todos" class="boton-menu boton-categoria active"><i class="bi bi-hand-index-thumb-fill"></i> Editar Stock</button>
+                    </li>
+            
+                    <li>
+                        <a class="boton-menu boton-salir" href="./almacen.php">
+                            <i class="bi bi-box-arrow-in-right"></i> Regresar 
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <footer>
+                <p class="texto-footer"><span>© 2023</span> Grupo 02 | Arq. de Software</p>
+            </footer>
+        </aside>
+        <main>
+            <h2 class="titulo-principal" id="titulo-principal">Editar Stock</h2>
+            <div id="contenedor-productos" class="contenedor-productos"></div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                const stockAEditar = JSON.parse(localStorage.getItem("stockAEditar"));
+                                
+                if (stockAEditar) {
+                    
+                    console.log("ID del producto a editar:", stockAEditar.ID);
+                    console.log("nombre del producto a editar:", stockAEditar.Nombre);
+                    console.log("precio del producto a editar:", stockAEditar.Precio);
+                    console.log("categoria del producto a editar", stockAEditar.Categoria)
+                    console.log("descripcion del producto a editar:", stockAEditar.Descripcion);
+                    console.log("cantidad del producto a editar:", stockAEditar.Cantidad);
+
+                    document.querySelector('input[name="idProducto"]').value = stockAEditar.ID;
+                    //document.querySelector('input[name="txtNombreProducto"]').value = stockAEditar.Nombre;
+                    //document.querySelector('input[name="txtPrecioProducto"]').value = stockAEditar.Precio;
+                    //document.querySelector('input[name="txtPresentacion"]').value = stockAEditar.Descripcion;
+                    //document.querySelector('input[name="txtCantidad"]').value = productoAEditar.Cantidad;
+                    //document.querySelector('input[name="txtCategoriaProducto"]').value = productoAEditar.Categoria;*/
+                    document.getElementById('txtNombreProducto').textContent = stockAEditar.Nombre
+                    //document.getElementById('txtPrecioProducto').textContent = stockAEditar.Precio
+                    document.getElementById('txtPresentacion').textContent = stockAEditar.Descripcion
+                    document.getElementById('txtmostrarCantidad').textContent = stockAEditar.Cantidad;
+
+                } else {
+                    console.log("No se ha encontrado ningún producto para editar en localStorage.");
+                }
+            });
+            </script>
+            <div class="form_product_stock">
+            <h2>Tu stock actual de:</h2>
+            <form method="POST" enctype="multipart/form-data" action="controladorStock.php">
+                <input type="hidden" name="idProducto">
+                <label id="txtNombreProducto"></label>
+                <label id="txtPresentacion"></label>
+                <label>La Cantidad En Almacen es de :</label>
+                <label id="txtmostrarCantidad"></label>
+                <label>Agregar a Stock</label>
+                <input type="number" name="txtagregarStock">
+                <label>Retirar del Stock</label>
+                <input type="number" name="txtretirarStock">
+                <button type="submit" class="btnFormAdminStock">Guardar cambios</button>  
+            </form>
+        </div>
+        </main>
+        
+    </div>
+</body>
+</html>

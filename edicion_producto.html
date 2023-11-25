@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" href="/img/favicon-removebg-preview.png" type="image/x-icon">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header-mobile">
+            <img class="logo" src="img/D_Todo-whitec.jpg" alt="minimarket">
+            <!-- <h1 class="logo">D'Todo</h1> -->
+            <button class="open-menu" id="open-menu">
+                <i class="bi bi-list"></i>
+            </button>
+        </header>
+        <aside>
+            <button class="close-menu" id="close-menu">
+                <i class="bi bi-x"></i>
+            </button>
+            <header>
+                <img class="logo" src="img/D_Todo-whitec.jpg" alt="minimarket">
+                <!-- <h1 class="logo">D'Todo</h1> -->
+            </header>
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <button id="todos" class="boton-menu boton-categoria active"><i class="bi bi-hand-index-thumb-fill"></i> Editar producto</button>
+                    </li>
+            
+                    <li>
+                        <a class="boton-menu boton-salir" href="./almacen.php">
+                            <i class="bi bi-box-arrow-in-right"></i> Regresar 
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <footer>
+                <p class="texto-footer"><span>© 2023</span> Grupo 02 | Arq. de Software</p>
+            </footer>
+        </aside>
+        <main>
+            <h2 class="titulo-principal" id="titulo-principal">Nuevo Producto</h2>
+            <div id="contenedor-productos" class="contenedor-productos"></div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                const productoAEditar = JSON.parse(localStorage.getItem("productoAEditar"));
+                                
+                if (productoAEditar) {
+                    
+                    console.log("ID del producto a editar:", productoAEditar.ID);
+                    console.log("nombre del producto a editar:", productoAEditar.Nombre);
+                    console.log("precio del producto a editar:", productoAEditar.Precio);
+                    console.log("categoria del producto a editar", productoAEditar.Categoria)
+                    console.log("descripcion del producto a editar:", productoAEditar.Descripcion);
+                    console.log("cantidad del producto a editar:", productoAEditar.Cantidad);
+
+                    document.querySelector('input[name="idProducto"]').value = productoAEditar.ID;
+                    document.querySelector('input[name="txtNombreProducto"]').value = productoAEditar.Nombre;
+                    document.querySelector('input[name="txtPrecioProducto"]').value = productoAEditar.Precio;
+                    document.querySelector('input[name="txtPresentacion"]').value = productoAEditar.Descripcion;
+                    document.querySelector('input[name="txtCantidad"]').value = productoAEditar.Cantidad;
+                    document.querySelector('input[name="txtCategoriaProducto"]').value = productoAEditar.Categoria;
+                    //document.getElementById('txtmostrarCantidad').textContent = productoAEditar.Cantidad;
+
+                } else {
+                    console.log("No se ha encontrado ningún producto para editar en localStorage.");
+                }
+            });
+            </script>
+            <div class="form_product">
+                <h2>Editar producto</h2>
+                <form action="controladorEdicionProducto.php" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="idProducto">
+                    <label>Nombre del producto</label>
+                    <input type="text" name="txtNombreProducto">
+                    <label>Precio del producto</label>
+                    <input type="number" name="txtPrecioProducto">
+                    <label>Presentacion</label>
+                    <input type="text" name="txtPresentacion">
+                    <label>Categoria</label>
+                    <input type="text" name="txtCategoriaProducto">
+                    <label>Cantidad</label>
+                    <input type="number" name="txtCantidad">
+                    <button type="submit" class="btnFormAdmin">Guardar cambios</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

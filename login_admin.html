@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="shortcut icon" href="/img/favicon-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/admin.css">
+    <title>Inicio | Admin</title>
+</head>
+<body>
+    <div class="log_admin">
+        <a href="index.html">Iniciar Sesión | Usuario</a>
+    </div>
+    <div class="wrapper-form">
+        <div class="form-box login">
+            <h2>Login | Admin</h2>
+            <form action="controladorLoginAdmin.php" method="POST">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="correo" name="txtcorreo" >
+                    <label>Correo</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" name="txtcontraseña" >
+                    <label>Contraseña</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Recordarmelo</label>
+                    <a href="#">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button type="submit" class="btn"><a href="./main_admin.php">Ingresar</a></button>
+                
+            </form>
+        </div>
+</body>
+</html>
