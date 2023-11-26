@@ -60,13 +60,16 @@
                 <p class="texto-footer"><span>© 2023</span> Grupo 02 | Arq. de Software</p>
             </footer>
         </aside>
-        <main>
+        <div class="contenedor-admin">
             <h2 class="titulo-principal" id="titulo-principal">Sección administración</h2>
             <div id="contenedor-productos" class="contenedor-productos">         
     </div>
-    <h2>Bienvenido!, en esta sección de la plataforma web podrá gestionar el almacén, visualizar productos, precio, stock, editar y agregar.</h2>
-    <img class="img_admin" src="img/super_destacada.jpg" alt="">
-        </main>
+    <div class="text-admin">
+    <h2><span>Bienvenido</span><br>
+        En esta sección de la plataforma web podrá gestionar el almacén, visualizar, editar y agregar productos, además de tener seguimiento del estado de las ventas y sus detalles.</h2>
+    <!--<img class="img_admin" src="img/super_destacada.jpg" alt="">-->
+</div>
+</div>
     </div>
     <!--<script src="./js/main.js"></script>-->
     <script src="./js/menu.js"></script>

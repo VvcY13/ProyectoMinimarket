@@ -143,6 +143,40 @@ main {
     padding: 3rem;
 }
 
+.contenedor-admin{
+    background-image: url(https://img.freepik.com/fotos-premium/hombre-comerciante-bienvenida-al-cliente_8595-3270.jpg?w=740);
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 1rem;
+    margin-left: 0;
+    border-radius: 2rem;
+    padding: 3rem;
+}
+.text-admin{
+    margin-top: 140px;
+    margin-left: 400px;
+}
+.text-admin h2{
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    background-color: var(--clr-white);
+    
+}
+.text-admin span{
+    font-size: 42px;
+    color: var(--clr-main);
+}
+
+
+
+
+
+
+
+
+
+
 .titulo-principal {
     color: var(--clr-main);
     margin-bottom: 2rem;
@@ -668,9 +702,6 @@ body{
     border: 2px solid var(--clr-white);
     transition: background-color .2s, color .2s;
 }
-
-
-
 .modal {
     display: none;
     position: fixed;
@@ -690,7 +721,6 @@ body{
     border-radius: 12px;
     width: 20%;
 }
-
 .cerrar-modal {
     background-color: var(--clr-main-light);
     padding: 2px 8px;
@@ -700,7 +730,6 @@ body{
     font-weight: bold;
     cursor: pointer;
 }
-
 .cerrar-modal:hover,
 .cerrar-modal:focus {
     color: black;
