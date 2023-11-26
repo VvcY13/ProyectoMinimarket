@@ -1,8 +1,4 @@
-
-// Select the container where the sales will be displayed
 const contenedorVentas = document.querySelector("#contenedor-ventas");
-
-// Fetch the sales data from the server
 fetch("controladorObtenerVentas.php")
  .then(response => response.json())
  .then(data => {
@@ -13,7 +9,6 @@ fetch("controladorObtenerVentas.php")
     console.error("Error al obtener las ventas:", error);
  });
 
-// Function to display the sales data in the container
 function cargarVentas(ventas) {
     contenedorVentas.innerHTML = "";
 
@@ -43,31 +38,8 @@ function cargarVentas(ventas) {
 
     }
 
-
 function toggleDetalles(venta) {
-    /*const detallesProductos = document.querySelector(`#detalles-${venta["ID Compra"]}`);
-
-    if (detallesProductos.classList.contains("mostrando-detalles")) {
-        detallesProductos.innerHTML = "";
-        detallesProductos.classList.remove("mostrando-detalles");
-    } else {
-        detallesProductos.innerHTML = "";
-
-        venta["Detalles"].forEach(detalle => {
-            const detalleDiv = document.createElement("div");
-            detalleDiv.classList.add("detalle-producto");
-            detalleDiv.innerHTML = `
-                <p class="nombre-producto">Producto: ${detalle["Nombre Producto"]}</p>
-                <p class="cantidad">Cantidad: ${detalle["Cantidad"]}</p>
-                <p class="precio">Precio Unit: ${detalle["Precio Unitario"]}</p>
-                <hr>
-            `;
-            detallesProductos.append(detalleDiv);
-        });
-
-        detallesProductos.classList.add("mostrando-detalles");
-    }*/
-
+    
     const detallesVentaModal = document.getElementById('detallesVentaModal');
     const modalDetalles = document.getElementById('modalDetalles');
 
@@ -77,7 +49,7 @@ function toggleDetalles(venta) {
         detallesVentaModal.innerHTML = ''; // Limpiar detalles anteriores
 
         venta["Detalles"].forEach(detalle => {
-            // Crea el HTML para cada detalle y añádelo al modal
+            
             const detalleHTML = `
                 <p>Producto: ${detalle["Nombre Producto"]}</p>
                 <p>Cantidad: ${detalle["Cantidad"]}</p>
@@ -89,22 +61,12 @@ function toggleDetalles(venta) {
 
         modalDetalles.style.display = 'block';
     }
-
 }
-
 
 function cerrarModal() {
     const modalDetalles = document.getElementById('modalDetalles');
     modalDetalles.style.display = 'none';
 }
-
-
-
-
-
-
-
-
 function cambiarEstatus(venta){
     const idVenta = venta["ID Compra"];
     fetch("controladorEstatus.php", {
