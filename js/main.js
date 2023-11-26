@@ -25,25 +25,6 @@ botonesCategorias.forEach(boton => {
         botonesCategorias.forEach(boton => boton.classList.remove("active"));
         e.currentTarget.classList.add("active");
 
-        /*if (e.currentTarget.id != "todos") {
-            // Realiza una solicitud al servidor para obtener los productos de la categoría seleccionada
-            fetch(`controladorProductos.php?Categoria=${e.currentTarget.id}`)
-                
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    tituloPrincipal.innerText = data[6].Categoria.Categoria; // Asegúrate de ajustar la obtención del nombre de la categoría
-                    cargarProductos(data);
-                });
-        } else {
-            // Si se selecciona "todos", obtén todos los productos
-            fetch("controladorProductos.php")
-                .then(response => response.json())
-                .then(data => {
-                    tituloPrincipal.innerText = "Todos los productos";
-                    cargarProductos(data);
-                });
-        }*/
         if (e.currentTarget.id !== "todos") {
             fetch(`controladorProductos.php?Categoria=${e.currentTarget.id}`)
                 .then(response => response.json())

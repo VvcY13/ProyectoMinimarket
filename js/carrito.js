@@ -141,24 +141,6 @@ async function comprarCarrito() {
     }).then(async (result) => {
         if (result.isConfirmed) {
             const totalCalculado = productosEnCarrito.reduce((acc, producto) => acc + (producto.Precio * producto.cantidad), 0);
-            /*try {
-                const productosVendidos = [];
-
-                for (const producto of productosEnCarrito) {
-                    productosVendidos.push({
-                        id: producto.ID,
-                        cantidadVendida: producto.cantidad
-                    });
-                }
-
-                const response = await fetch('controladorActualizarStock.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ productos: productosVendidos })
-                });*/
-
                 try {
                     const datosCompra = {
                         total: totalCalculado, // Agregar el total de la compra

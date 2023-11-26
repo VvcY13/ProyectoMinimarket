@@ -24,19 +24,16 @@ function obtenerProductosPorCategoria($categoria) {
         }
     }
 
-    // Devuelve los productos como JSON
     echo json_encode($productos);
 
-    // Cierra la conexión a la base de datos
     $conexion->close();
 }
 
-// Verifica si se proporciona el parámetro 'Categoria' en la URL
+
 if (isset($_GET['Categoria'])) {
     $categoria = $_GET['Categoria'];
     obtenerProductosPorCategoria($categoria);
 } else {
-    // Si no se proporciona una categoría, obtén todos los productos
     $conexion = conectar();
 
     $sql = "SELECT * FROM tblproductos";
@@ -58,10 +55,8 @@ if (isset($_GET['Categoria'])) {
         }
     }
 
-    // Devuelve todos los productos como JSON
     echo json_encode($productos);
 
-    // Cierra la conexión a la base de datos
     $conexion->close();
 }
 

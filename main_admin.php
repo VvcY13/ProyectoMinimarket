@@ -15,7 +15,7 @@
     <div class="wrapper">
         <header class="header-mobile">
             <img class="logo" src="img/D_Todo-whitec.jpg" alt="minimarket">
-            <!-- <h1 class="logo">D'Todo</h1> -->
+         
             <button class="open-menu" id="open-menu">
                 <i class="bi bi-list"></i>
             </button>
@@ -26,7 +26,7 @@
             </button>
             <header>
                 <img class="logo" src="img/D_Todo-whitec.jpg" alt="minimarket">
-                <!-- <h1 class="logo">D'Todo</h1> -->
+             
             </header>
             <nav>
                 <ul class="menu">
@@ -67,11 +67,11 @@
     <div class="text-admin">
     <h2><span>Bienvenido</span><br>
         En esta sección de la plataforma web podrá gestionar el almacén, visualizar, editar y agregar productos, además de tener seguimiento del estado de las ventas y sus detalles.</h2>
-    <!--<img class="img_admin" src="img/super_destacada.jpg" alt="">-->
+    
 </div>
 </div>
     </div>
-    <!--<script src="./js/main.js"></script>-->
+   
     <script src="./js/menu.js"></script>
 </body>
 </html>

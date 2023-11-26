@@ -13,7 +13,7 @@
     <div class="wrapper">
         <header class="header-mobile">
             <img class="logo" src="img/D_Todo-whitec.jpg" alt="minimarket">
-            <!-- <h1 class="logo">D'Todo</h1> -->
+         
             <button class="open-menu" id="open-menu">
                 <i class="bi bi-list"></i>
             </button>
@@ -24,7 +24,7 @@
             </button>
             <header>
                 <img class="logo" src="img/D_Todo-whitec.jpg" alt="minimarket">
-                <!-- <h1 class="logo">D'Todo</h1> -->
+               
             </header>
             <nav>
                 <ul class="menu">
@@ -61,13 +61,9 @@
                     console.log("cantidad del producto a editar:", stockAEditar.Cantidad);
 
                     document.querySelector('input[name="idProducto"]').value = stockAEditar.ID;
-                    //document.querySelector('input[name="txtNombreProducto"]').value = stockAEditar.Nombre;
-                    //document.querySelector('input[name="txtPrecioProducto"]').value = stockAEditar.Precio;
-                    //document.querySelector('input[name="txtPresentacion"]').value = stockAEditar.Descripcion;
-                    //document.querySelector('input[name="txtCantidad"]').value = productoAEditar.Cantidad;
-                    //document.querySelector('input[name="txtCategoriaProducto"]').value = productoAEditar.Categoria;*/
+                   
                     document.getElementById('txtNombreProducto').textContent = stockAEditar.Nombre
-                    //document.getElementById('txtPrecioProducto').textContent = stockAEditar.Precio
+                   
                     document.getElementById('txtPresentacion').textContent = stockAEditar.Descripcion
                     document.getElementById('txtmostrarCantidad').textContent = stockAEditar.Cantidad;
 
