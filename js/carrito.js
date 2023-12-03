@@ -150,7 +150,8 @@ async function comprarCarrito() {
                     for (const producto of productosEnCarrito) {
                         datosCompra.productos.push({
                             id: producto.ID,
-                            cantidadVendida: producto.cantidad
+                            cantidadVendida: producto.cantidad,
+                            preciosinigv: producto.PrecioSinIGV
                         });
                     }
             

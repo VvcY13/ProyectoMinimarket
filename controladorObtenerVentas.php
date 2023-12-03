@@ -3,7 +3,7 @@ include 'controladorConexion.php';
 
 $conexion = conectar();
 
-$sqlVentasProductos = "SELECT c.idCompras AS idCompras, c.FechaCompra,c.Total ,c.Estado, pc.Producto, pc.Cantidad, pc.Precio
+$sqlVentasProductos = "SELECT c.idCompras AS idCompras, c.FechaCompra,c.Total ,c.Estado, pc.Producto, pc.Cantidad, pc.Precio, pc.sinIGV
                     FROM compras c
                     INNER JOIN productos_comprados pc ON c.idCompras = pc.idCompra";
 
@@ -28,7 +28,8 @@ if ($resultado && $resultado->num_rows > 0) {
         $detalleProducto = array(
             "Nombre Producto" => $fila["Producto"],
             "Cantidad" => $fila["Cantidad"],
-            "Precio Unitario" => $fila["Precio"]
+            "Precio Unitario" => $fila["Precio"],
+            "sinIGV" => $fila["sinIGV"]
         );
 
         $ventas[$idCompra]["Detalles"][] = $detalleProducto;

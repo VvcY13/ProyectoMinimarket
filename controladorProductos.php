@@ -19,7 +19,8 @@ function obtenerProductosPorCategoria($categoria) {
                 'Descripcion' => $row['Descripcion'],
                 'Imagen' => $row['Imagen'],
                 'Cantidad' => $row['Cantidad'],
-                'Categoria' => $row['Categoria']
+                'Categoria' => $row['Categoria'],
+                'PrecioSinIGV' => $row['precioSinIGV']
             );
         }
     }
@@ -50,7 +51,8 @@ if (isset($_GET['Categoria'])) {
                 'Descripcion' => $row['Descripcion'],
                 'Imagen' => $row['Imagen'],
                 'Cantidad' => $row['Cantidad'],
-                'Categoria' => $row['Categoria']
+                'Categoria' => $row['Categoria'],
+                'PrecioSinIGV' => $row['precioSinIGV']
             );
         }
     }

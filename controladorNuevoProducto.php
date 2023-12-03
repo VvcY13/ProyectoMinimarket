@@ -9,6 +9,10 @@ $presentacionProducto=$_POST["txtPresentacionProducto"];
 $categoriaProducto=$_POST["txtCategoriaProducto"];
 $cantidadProducto=$_POST["txtnombre"];
 
+$precioNuevo = floatval($precioProducto);
+
+$preciosinigv=$precioNuevo-($precioNuevo*0.18);
+
 $imagenNombre = $_FILES['ImagenProducto']['name'];
 $imagenTipo = $_FILES['ImagenProducto']['type'];
 $imagenTmpName = $_FILES['ImagenProducto']['tmp_name'];
@@ -22,8 +26,8 @@ move_uploaded_file($imagenTmpName, $rutaImagen);
 
 
 $conexion = conectar();
-$sql = "INSERT INTO tblproductos (Nombre, Precio, Descripcion, Imagen, Cantidad, Categoria ) 
-        VALUES ('$nombreProducto', '$precioProducto', '$presentacionProducto', '$rutaImagen','$cantidadProducto','$categoriaProducto')";
+$sql = "INSERT INTO tblproductos (Nombre, Precio, Descripcion, Imagen, Cantidad, Categoria, precioSinIGV ) 
+        VALUES ('$nombreProducto', '$precioProducto', '$presentacionProducto', '$rutaImagen','$cantidadProducto','$categoriaProducto','$preciosinigv')";
 
 if ($conexion->query($sql) === TRUE) {
     

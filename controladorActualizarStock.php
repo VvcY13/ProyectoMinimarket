@@ -20,8 +20,9 @@ if (isset($data['total'])) {
     foreach ($data['productos'] as $producto) {
         $idProducto = $producto['id'];
         $cantidadVendida = $producto['cantidadVendida'];
+        $preciosinigv= $producto['preciosinigv'];
 
-        $sqlProducto = "SELECT Nombre, Precio, Cantidad FROM tblproductos WHERE id = $idProducto";
+        $sqlProducto = "SELECT Nombre, Precio, Cantidad, precioSinIGV FROM tblproductos WHERE id = $idProducto";
         $resultProducto = $conexion->query($sqlProducto);
 
         if ($resultProducto->num_rows > 0) {
@@ -29,6 +30,7 @@ if (isset($data['total'])) {
             $nombreProducto = $rowProducto['Nombre'];
             $precioProducto = $rowProducto['Precio'];
             $stockActual = $rowProducto['Cantidad'];
+            $sinigv = $rowProducto['precioSinIGV'];
 
             if ($cantidadVendida > $stockActual) {
                 echo "No hay suficiente stock para el producto con ID $idProducto.";
@@ -42,8 +44,11 @@ if (isset($data['total'])) {
                 echo "Error al actualizar el stock del producto con ID $idProducto: " . $conexion->error;
                 exit();
             }
+            $nuevaCantidadVendida=intval($cantidadVendida);
+            $nuevosinigv=floatval($sinigv);
+            $nuevovalor= $nuevaCantidadVendida*$nuevosinigv;
 
-            $sqlInsertCompraProducto = "INSERT INTO productos_comprados (idCompra, Producto, Cantidad, Precio) VALUES ($idCompra, '$nombreProducto', $cantidadVendida, $precioProducto)";
+            $sqlInsertCompraProducto = "INSERT INTO productos_comprados (idCompra, Producto, Cantidad, Precio, sinIGV) VALUES ($idCompra, '$nombreProducto', $cantidadVendida, $precioProducto, $nuevovalor)";
 
             if ($conexion->query($sqlInsertCompraProducto) !== TRUE) {
                 echo "Error al registrar la compra del producto con ID $idProducto: " . $conexion->error;

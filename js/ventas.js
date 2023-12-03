@@ -134,12 +134,12 @@ function generarFactura(venta){
                 "ubigueo": "150101"
             }
         },
-        "mtoOperGravadas": parseFloat(venta.Total),
+        "mtoOperGravadas": parseFloat(venta.Total)-(parseFloat(venta.Total)*0.18),
         "mtoIGV": parseFloat(venta.Total) * 0.18,
         "valorVenta": parseFloat(venta.Total),
         "totalImpuestos": parseFloat(venta.Total) * 0.18,
         "subTotal": parseFloat(venta.Total) * 1.18,
-        "mtoImpVenta": parseFloat(venta.Total) * 1.18,
+        "mtoImpVenta":parseFloat(venta.Total)-(parseFloat(venta.Total)*0.18)+parseFloat(venta.Total) * 0.18,
         "details": []
     };
 
@@ -149,14 +149,14 @@ function generarFactura(venta){
             "unidad": "UND",
             "descripcion": detalle["Nombre Producto"],
             "cantidad": parseFloat(detalle.Cantidad),
-            "mtoValorUnitario": parseFloat(detalle["Precio Unitario"]),
-            "mtoValorVenta": parseFloat(detalle["Precio Unitario"]) * parseFloat(detalle.Cantidad),
+            "mtoValorUnitario": parseFloat(detalle["sinIGV"])/parseFloat(detalle.Cantidad),
+            "mtoValorVenta": parseFloat(detalle["sinIGV"]),
             "mtoBaseIgv": parseFloat(detalle["Precio Unitario"]) * parseFloat(detalle.Cantidad),
             "porcentajeIgv": 18,
             "igv": parseFloat(detalle["Precio Unitario"]) * parseFloat(detalle.Cantidad) * 0.18,
             "tipAfeIgv": 10,
             "totalImpuestos": parseFloat(detalle["Precio Unitario"]) * parseFloat(detalle.Cantidad) * 0.18,
-            "mtoPrecioUnitario": parseFloat(detalle["Precio Unitario"]) * 1.18
+            "mtoPrecioUnitario": parseFloat(detalle["sinIGV"])/parseFloat(detalle.Cantidad),
         };
         facturaData.details.push(detalleProducto);
     });
