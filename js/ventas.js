@@ -23,6 +23,7 @@ function cargarVentas(ventas) {
                 <p class="venta-estado">Estatus ${venta["Estado"]}</p>
                 <button class="producto-cambiar-estatus" id="CambiarEstatus-${venta["ID Compra"]}">Cambiar Estatus</button>
                 <button class="producto-editar-stock" id="detalle-${venta["ID Compra"]}">Mostrar Detalles</button>
+                <button class="producto-factura" id="factura-${venta["ID Compra"]}">Realizar Factura</button>
                 <div class="detalles-productos" id="detalles-${venta["ID Compra"]}">
                    
                 </div>
@@ -34,6 +35,8 @@ function cargarVentas(ventas) {
         botonMostrarDetalles.addEventListener("click", () => toggleDetalles(venta));
         const botonCambiarEstatus = div.querySelector(`#CambiarEstatus-${venta["ID Compra"]}`);
         botonCambiarEstatus.addEventListener("click", () => cambiarEstatus(venta));
+        const botonGenerarFactura = div.querySelector(`#factura-${venta["ID Compra"]}`);
+        botonGenerarFactura.addEventListener("click", ()=>generarFactura(venta));
     });
 
     }
@@ -90,3 +93,105 @@ function cambiarEstatus(venta){
         console.error("Error al intentar cambiar el estatus:", error);
     });
 }
+function generarFactura(venta){
+    const idVenta = venta["ID Compra"];
+    console.log("hizo click en generar factura para la venta "+ idVenta);
+
+    // Puedes utilizar la información de 'venta' directamente para generar la factura
+    const facturaData = {
+        "ublVersion": "2.1",
+        "tipoOperacion": "0101",
+        "tipoDoc": "03",
+        "serie": "B001",
+        "correlativo": "1",
+        "fechaEmision": "2021-01-27T00:00:00-05:00",
+        "formaPago": {
+            "moneda": "PEN",
+            "tipo": "Contado"
+        },
+        "tipoMoneda": "PEN",
+        "client": {
+            "tipoDoc": "6",
+            "numDoc": 20000000002,
+            "rznSocial": "Cliente",
+            "address": {
+                "direccion": "CHORRILLOS",
+                "provincia": "LIMA",
+                "departamento": "LIMA",
+                "distrito": "LIMA",
+                "ubigueo": "150101"
+            }
+        },
+        "company": {
+            "ruc": 12345654321,
+            "razonSocial": "Dtodo SA",
+            "nombreComercial": "Dtodo SA",
+            "address": {
+                "direccion": "CHORRILLOS",
+                "provincia": "LIMA",
+                "departamento": "LIMA",
+                "distrito": "LIMA",
+                "ubigueo": "150101"
+            }
+        },
+        "mtoOperGravadas": parseFloat(venta.Total),
+        "mtoIGV": parseFloat(venta.Total) * 0.18,
+        "valorVenta": parseFloat(venta.Total),
+        "totalImpuestos": parseFloat(venta.Total) * 0.18,
+        "subTotal": parseFloat(venta.Total) * 1.18,
+        "mtoImpVenta": parseFloat(venta.Total) * 1.18,
+        "details": []
+    };
+
+    venta.Detalles.forEach(detalle => {
+        const detalleProducto = {
+            "codProducto": "", // Puedes asignar un código de producto si lo tienes
+            "unidad": "UND",
+            "descripcion": detalle["Nombre Producto"],
+            "cantidad": parseFloat(detalle.Cantidad),
+            "mtoValorUnitario": parseFloat(detalle["Precio Unitario"]),
+            "mtoValorVenta": parseFloat(detalle["Precio Unitario"]) * parseFloat(detalle.Cantidad),
+            "mtoBaseIgv": parseFloat(detalle["Precio Unitario"]) * parseFloat(detalle.Cantidad),
+            "porcentajeIgv": 18,
+            "igv": parseFloat(detalle["Precio Unitario"]) * parseFloat(detalle.Cantidad) * 0.18,
+            "tipAfeIgv": 10,
+            "totalImpuestos": parseFloat(detalle["Precio Unitario"]) * parseFloat(detalle.Cantidad) * 0.18,
+            "mtoPrecioUnitario": parseFloat(detalle["Precio Unitario"]) * 1.18
+        };
+        facturaData.details.push(detalleProducto);
+    });
+
+    // Agregar leyenda
+    facturaData.legends = [
+        {
+            "code": "1000",
+            "value": "SOLES"
+        }
+    ];
+
+    // Puedes utilizar facturaData para enviarlo a la API o realizar otras operaciones necesarias
+    console.log("JSON para la factura:", facturaData);
+    token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDE1NjIxNjcsImV4cCI6MTcwMTY0ODU2Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidnZjYXljaG8ifQ.Y03xAQFo_99HIq1D0k2bc1vlY3dUN3ujbv5cpqmmQkaY_gbU_zy1M9JKR9Qrh9DOO5BA1VLeNzwS82vqVbRxIy_soR-Fg4VQ1fUojQeVF7j7RzwtOrQ3-lWsk3qLpLPQuVfDoTCNtn19mh5iwtgI0OkfkoK7c-p9WZD0dd9dgHZc0Ls0mnUtuoqwmrudnwkPgBplOlBQCGkVQoJzyA7wdDzilkRmrHLUC57KbVcckiNaF5dUM3kV6cmqvO_QczHZ7IYqSGlPJPBEcPCN40I3UAcq5Tk2Yii0S6qE-PJYKjGDFdVeo_U5-ub4_2ME5jxiChZtRpiUvJ4ZJZxKUkmuCGz8vyzCROC7D1xH0VBPP9qbYImUWhdezLLquPKwo6kRh2D9T-Ajytun_S1jQUadpLDD2ji24D1pHq0YG2c8NmkvfGGCcp99Afozu1ktZ7OHq8OKaehKBW8DpEPvaFT_Y-voQReBs2FNw8XNTQrFuZQQRUyKOsuLsxVBrgNQTObvMsnmuWjLkmMEOC78KbUAkG6c2enXy5Sc8hiLU1PoeeTP4ZKDOb07RL0GuXB7GmwzWc3S2u7NAh1lRoEPwfA1TbzlTUZPMuVNF0iJVa0H4GQjIzN2ffKn5acIQMHpwKXHvb9ltF7XI46tmdy7forsuVekP2lZ_oJlYQjIOgIX5L0";
+    // Si deseas enviar este JSON a un servidor para generar la factura, puedes utilizar fetch()
+    fetch('https://facturacion.apisperu.com/api/v1/invoice/pdf', { // Cambiar a la URL del endpoint que devuelve el PDF
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(facturaData),
+            })
+                .then(response => response.blob()) // Obtener la respuesta como un blob (archivo binario)
+                .then(blob => {
+                    // Crear un objeto URL para el blob y crear un enlace de descarga
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'factura.pdf'; // Nombre del archivo PDF
+                    document.body.appendChild(a); // Agregar el enlace al cuerpo del documento
+                    a.click(); // Simular clic en el enlace para iniciar la descarga
+                    document.body.removeChild(a); // Eliminar el enlace del cuerpo del documento después de la descarga
+                })
+                .catch(error => console.error('Error:', error));
+                
+};

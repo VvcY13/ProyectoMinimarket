@@ -702,6 +702,17 @@ body{
     border: 2px solid var(--clr-white);
     transition: background-color .2s, color .2s;
 }
+.producto-factura{
+    border: 0;
+    background-color: var(--clr-white);
+    color: var(--clr-main);
+    padding: .4rem;
+    text-transform: uppercase;
+    border-radius: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--clr-white);
+    transition: background-color .2s, color .2s;
+}
 .modal {
     display: none;
     position: fixed;
